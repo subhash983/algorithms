@@ -16,13 +16,44 @@ const isCircular = ll => {
   while (fast.next && fast.next.next) {
     fast = fast.next.next;
     slow = slow.next;
-    console.log(fast);
-    console.log(slow);
     if (fast === slow) {
       return true;
     }
   }
   return false;
 };
+//console.log(isCircular(ll));
 
-console.log(isCircular(ll));
+const detectAndRemoveLoop = ll => {
+  let slow = ll.head;
+  let fast = ll.head;
+  while (fast.next && fast.next.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow === fast) {
+      removeLoop(slow, ll.head);
+      return;
+    }
+  }
+};
+
+const removeLoop = (loopNode, head) => {
+  let currentNode = head;
+  let loopCurrentNode = loopNode;
+  while (currentNode) {
+    loopCurrentNode = loopNode;
+    while (
+      loopCurrentNode.next !== currentNode &&
+      loopCurrentNode.next !== loopNode
+    ) {
+      loopCurrentNode = loopCurrentNode.next;
+    }
+    if (loopCurrentNode.next === currentNode) {
+      break;
+    }
+    currentNode = currentNode.next;
+  }
+  loopCurrentNode.next = null;
+};
+detectAndRemoveLoop(ll);
+console.log(ll.getLast());
