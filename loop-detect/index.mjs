@@ -31,7 +31,8 @@ const detectAndRemoveLoop = ll => {
     slow = slow.next;
     fast = fast.next.next;
     if (slow === fast) {
-      removeLoop(slow, ll.head);
+      //  removeLoop(slow, ll.head);
+      removeLoopBetter(slow, ll.head);
       return;
     }
   }
@@ -54,6 +55,29 @@ const removeLoop = (loopNode, head) => {
     currentNode = currentNode.next;
   }
   loopCurrentNode.next = null;
+};
+
+const removeLoopBetter = (loopNode, head) => {
+  //counting number of nodes in loop
+  let currentLoopNode = loopNode;
+  let count = 1;
+  while (currentLoopNode.next !== loopNode) {
+    count++;
+    currentLoopNode = currentLoopNode.next;
+  }
+  let nthNodeFromHead = head;
+  for (let i = 0; i < count; i++) {
+    nthNodeFromHead = nthNodeFromHead.next;
+  }
+  let currentNode = head;
+  while (currentNode) {
+    if (currentNode.next === nthNodeFromHead.next) {
+      nthNodeFromHead.next = null;
+      break;
+    }
+    currentNode = currentNode.next;
+    nthNodeFromHead = nthNodeFromHead.next;
+  }
 };
 detectAndRemoveLoop(ll);
 console.log(ll.getLast());
