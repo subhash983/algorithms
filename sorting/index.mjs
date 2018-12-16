@@ -35,4 +35,28 @@ const selectionSort = arr => {
   return arr;
 };
 
-console.log(selectionSort([5, 1, 6, 3, 4, 12, 5, 6, 4, -2]));
+//console.log(selectionSort([5, 1, 6, 3, 4, 12, 5, 6, 4, -2]));
+
+const mergeSort = arr => {
+  if (arr.length === 1) {
+    return arr;
+  }
+  let left = mergeSort(arr.slice(0, Math.floor(arr.length / 2)));
+  let right = mergeSort(arr.slice(Math.floor(arr.length / 2)));
+  return merge(left, right);
+};
+
+const merge = (left, right) => {
+  let results = [];
+  while (left.length && right.length) {
+    if (left[0] < right[0]) {
+      results.push(left.shift());
+    } else {
+      results.push(right.shift());
+    }
+  }
+
+  return [...results, ...left, ...right];
+};
+
+console.log(mergeSort([5, 1, 6, 3, 4, 12, 5, 6, 4]));
