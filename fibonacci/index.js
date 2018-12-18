@@ -14,16 +14,11 @@
 //using for loop
 
 const fibonacci = n => {
-  let a = 0;
-  let b = 1;
-  if (n === 0) {
-    return a;
-  }
+  let result = [0, 1];
   for (let i = 1; i < n; i++) {
-    b = a + b;
-    a = b - a;
+    result.push(result[i] + result[i - 1]);
   }
-  return b;
+  return result[n];
 };
 
-console.log(fibonacci(3));
+console.log(fibonacci(6));
