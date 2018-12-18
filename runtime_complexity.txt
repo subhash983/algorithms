@@ -1,0 +1,6 @@
+[1] -> Constant time -> Increasing number of input, amount of work/runtime remains Constant
+[log(n)] -> Logarithmic time -> Doubling the input elements doesn't double the amount of work. Assumption: Searching operations are logarithmic.
+[n] -> Linear time-> increasing input elements , runtime increases linearly. example: for loop from 0 to n.
+[n*log(n)] -> Quasilinear time -> Doubling the input elements doesn't double the amount of work. Assumption: Sorting operations are Quasilinear.
+[n^2] -> Quadratic time -> Every element in collection has to be compared to every other element. example two for loops.
+[2^n] -> Exponential time -> if you add single element to the collection , processing power required doubles.
