@@ -1,22 +1,14 @@
 const chunk = (arr, chunkSize) => {
-  let result = [];
-  let counter = 0;
-  let chunkArr;
+  let chunkedArrays = [];
   for (let val of arr) {
-    if (counter === 0) {
-      chunkArr = [];
-    }
-    chunkArr.push(val);
-    counter++;
-    if (counter === chunkSize) {
-      counter = 0;
-      result.push(chunkArr);
+    let lastElement = chunkedArrays[chunkedArrays.length - 1];
+    if (!lastElement || lastElement.length === chunkSize) {
+      chunkedArrays.push([val]);
+    } else {
+      lastElement.push(val);
     }
   }
-  if (counter !== 0) {
-    result.push(chunkArr);
-  }
-  return result;
+  return chunkedArrays;
 };
 
-console.log(chunk([1, 2, 3, 4, 5, 6, 7, 8], 10));
+console.log(chunk([1, 2, 3, 4, 5, 6, 7, 8], 3));
