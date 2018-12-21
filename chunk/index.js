@@ -11,4 +11,14 @@ const chunk = (arr, chunkSize) => {
   return chunkedArrays;
 };
 
-console.log(chunk([1, 2, 3, 4, 5, 6, 7, 8], 3));
+const chunkAlternate = (arr, chunkSize) => {
+  let chunkedArrays = [];
+  let index = 0;
+  while (index < arr.length) {
+    chunkedArrays.push(arr.slice(index, index + chunkSize));
+    index += chunkSize;
+  }
+  return chunkedArrays;
+};
+
+console.log(chunkAlternate([1, 2, 3, 4, 5, 6, 7, 8], 10));
