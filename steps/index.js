@@ -17,12 +17,13 @@ const printStepsRecursion = (n, row = 0, stair = "") => {
   if (stair.length === n) {
     console.log(stair);
     printStepsRecursion(n, row + 1);
-  }
-  if (stair.length <= row) {
-    stair += "#";
   } else {
-    stair += " ";
+    if (stair.length <= row) {
+      stair += "#";
+    } else {
+      stair += " ";
+    }
+    printStepsRecursion(n, row, stair);
   }
-  steps(n, row, stair);
 };
-printSteps(4);
+printStepsRecursion(4);
