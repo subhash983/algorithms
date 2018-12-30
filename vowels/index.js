@@ -9,5 +9,9 @@ const vowels = str => {
   return count;
 };
 
+const vowelsRegex = str => {
+  let matches = str.match(/[aeiou]/gi);
+  return (matches || []).length;
+};
 
-console.log(vowels('Why dO you ask'));
+console.log(vowelsRegex("Why"));
