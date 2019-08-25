@@ -283,7 +283,6 @@ const readData = () => {
         countries[countries.length - 1][substance] = Number(quantity);
       }
     }
-    
   });
   return countries;
 };
@@ -296,11 +295,20 @@ const createReport = (countries, substance) => {
   return `${substance} levels in ${maxCountries.join(", ")} are too high.`;
 };
 
-
-
-
-
-
-
 //parseData();
-console.log(parseDataAlternative());
+// console.log(parseDataAlternative());
+
+//Bribe the Guards of the Crown Jewels
+let bribeAmount = 0;
+const leastBribes = (bribes, roomNumber) => {
+  let middleIndex = Math.ceil(bribes.length / 2);
+  bribeAmount += bribes[middleIndex];
+  if (middleIndex === roomNumber) {
+    return bribeAmount;
+  } else if (roomNumber < middleIndex) {
+    bribeAmount += leastBribes(bribes.slice(0, middleIndex - 1));
+  } else {
+    bribeAmount += leastBribes(bribes.slice(middleIndex));
+  }
+  return bribeAmount
+};
